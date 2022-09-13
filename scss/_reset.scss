@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Istok+Web:wght@400;700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: $defaultFontSize;
+}
+
+body {
+  font-size: 1rem;
+  font-family: $defaultFontFamily;
+  color: $fontColor;
+  background-image: url('../../assets/images/dots.png');
+  background-repeat: repeat;
+}
+
+section {
+  padding: 3rem 0;
+}
+a {
+  color: $themeColor;
+  text-decoration: none;
+  &:hover {
+    color: darken($color: $themeColor, $amount: 5);
+  }
+}

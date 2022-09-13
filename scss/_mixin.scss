@@ -1,0 +1,30 @@
+@mixin flex($justify-content: false, $align-items: false) {
+  display: flex;
+  @if $justify-content {
+    justify-content: $justify-content;
+  }
+  @if $align-items {
+    align-items: $align-items;
+  }
+}
+
+@mixin circleImage($height, $width) {
+  height: $height;
+  width: $width;
+  object-fit: cover;
+  border-radius: 50%;
+}
+@mixin roundedImage($height, $width, $radius: 0) {
+  height: $height;
+  width: $width;
+  object-fit: cover;
+  @if $radius {
+    border-radius: $radius;
+  }
+}
+
+@mixin resetList {
+  list-style: none;
+  margin-bottom: 0;
+  padding-left: 0;
+}
