@@ -93,6 +93,9 @@
         padding-right: 3rem;
         background-color: #1da1f2;
         color: $white;
+        span {
+          font-size: 1rem;
+        }
         @media screen and(max-width:757.98px) {
           padding: 0.5rem 1rem;
           font-size: 1rem;
@@ -469,6 +472,9 @@
       padding-right: 3rem;
       background-color: #1da1f2;
       color: $white;
+      span {
+        font-size: 1rem;
+      }
       @media screen and(max-width:757.98px) {
         padding: 0.5rem 1rem;
         font-size: 1rem;
@@ -531,6 +537,55 @@
       z-index: 1;
       @media screen and(max-width: 991.98px) {
         content: none;
+      }
+    }
+  }
+}
+
+.footer {
+  padding: 1rem 0;
+  font-size: 1.5rem;
+  @media screen and(max-width:767.98px) {
+    padding: 1.5rem 0;
+  }
+  .footer-wrapper {
+    @include flex(space-between, center);
+    @media screen and(max-width:767.98px) {
+      flex-direction: column;
+    }
+  }
+  .left {
+    @media screen and(max-width:767.98px) {
+      margin-bottom: 1.5rem;
+    }
+    p {
+      margin-bottom: 0;
+    }
+  }
+  .center {
+    @media screen and(max-width:767.98px) {
+      margin-bottom: 1.5rem;
+    }
+    img {
+      width: 7.5rem;
+    }
+  }
+  .right {
+    @include flex(space-between, center);
+    ul {
+      @include resetList;
+      @include flex;
+      li {
+        a {
+          display: inline-block;
+          margin-left: 0.75rem;
+          img {
+            @include circleImage(3rem, 3rem);
+            @media screen and(max-width:767.98px) {
+              @include circleImage(2.5rem, 2.5rem);
+            }
+          }
+        }
       }
     }
   }

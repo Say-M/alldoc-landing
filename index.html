@@ -8,11 +8,15 @@
     <!-- ! Bootstrap -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css"
-      integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w=="
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
       crossorigin="anonymous"
-      referrerpolicy="no-referrer"
     />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+      integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+      crossorigin="anonymous"
+    ></script>
     <!-- ! Fontawesome -->
     <link
       rel="stylesheet"
@@ -87,7 +91,12 @@
                 Give yourself the freedom to build a workflow that you like and
                 be stress-free
               </p>
-              <form action="/" method="post" class="subscription-box">
+              <form
+                action="/"
+                method="post"
+                class="subscription-box"
+                id="top-form"
+              >
                 <i class="far fa-envelope"></i>
                 <input
                   type="email"
@@ -96,9 +105,11 @@
                   placeholder="Enter your email address"
                   required
                 />
-                <button type="submit" class="btn btn-lg">Join Us</button>
+                <button type="submit" name="submit" class="btn btn-lg">
+                  Join Us
+                </button>
               </form>
-              <!-- <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+              <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
                 <symbol
                   id="exclamation-triangle-fill"
                   fill="currentColor"
@@ -119,8 +130,9 @@
                 </symbol>
               </svg>
               <div
-                class="alert alert-danger d-flex align-items-center alert-dismissible fade show"
+                class="alert d-flex align-items-center alert-dismissible d-none"
                 role="alert"
+                id="top-alert"
               >
                 <svg
                   class="bi flex-shrink-0 me-2"
@@ -131,14 +143,14 @@
                 >
                   <use xlink:href="#exclamation-triangle-fill" />
                 </svg>
-                <div><%= error %></div>
+                <div class="alert-text"></div>
                 <button
                   type="button"
                   class="btn-close"
                   data-bs-dismiss="alert"
                   aria-label="Close"
                 ></button>
-              </div> -->
+              </div>
             </div>
           </div>
           <div class="col-xl-6">
@@ -293,7 +305,12 @@
     <section class="subscription">
       <div class="container">
         <h1>Join our Community</h1>
-        <form action="/" method="post" class="subscription-box">
+        <form
+          action="/"
+          method="post"
+          class="subscription-box"
+          id="bottom-form"
+        >
           <i class="far fa-envelope"></i>
           <input
             type="email"
@@ -302,7 +319,9 @@
             placeholder="Enter your email address"
             required
           />
-          <button type="submit" class="btn btn-lg">Join Us</button>
+          <button type="submit" name="submit" class="btn btn-lg">
+            Join Us
+          </button>
         </form>
         <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
           <symbol
@@ -324,9 +343,10 @@
             />
           </symbol>
         </svg>
-        <!-- <div
-          class="alert alert-danger d-flex align-items-center alert-dismissible fade show"
+        <div
+          class="alert d-flex align-items-center alert-dismissible d-none"
           role="alert"
+          id="bottom-alert"
         >
           <svg
             class="bi flex-shrink-0 me-2"
@@ -337,16 +357,117 @@
           >
             <use xlink:href="#exclamation-triangle-fill" />
           </svg>
-          <div><%= error %></div>
+          <div class="alert-text">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit,
+            ullam.
+          </div>
           <button
             type="button"
             class="btn-close"
             data-bs-dismiss="alert"
             aria-label="Close"
           ></button>
-        </div> -->
+        </div>
       </div>
     </section>
     <!-- ! join section end -->
+
+    <!-- ! footer section start -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-wrapper">
+          <div class="left">
+            <p>&copy; 2021</p>
+          </div>
+          <div class="center">
+            <img src="/assets/images/logo.png" alt="AllDoc" />
+          </div>
+          <div class="right">
+            <ul>
+              <li>
+                <a href="https://www.facebook.com/alldoctoday/" target="_blink"
+                  ><img src="/assets/images/facebook.png" alt=""
+                /></a>
+              </li>
+              <!-- <li>
+                <a href="#"><img src="/assets/images/youtube.png" alt="" /></a>
+              </li> -->
+              <li>
+                <a
+                  href="https://www.linkedin.com/company/alldoctoday"
+                  target="_blink"
+                  ><img src="/assets/images/linkedin.png" alt=""
+                /></a>
+              </li>
+              <!-- <li>
+                <a href="#"><img src="/assets/images/whatsapp.png" alt="" /></a>
+              </li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- ! footer section end -->
   </body>
+
+  <script>
+    //  <!-- ! activate bootstrap alert -->
+    var myAlert = document.getElementById('myAlert')
+    var bsAlert = new bootstrap.Alert(myAlert)
+
+    //  <!-- ! selecting important elements -->
+    const topForm = document.querySelector('#top-form')
+    const bottomForm = document.querySelector('#bottom-form')
+    const url =
+      // 'http://localhost:9000/api/subscription' ||
+      'https://alldoc-gamma.herokuapp.com/api/subscription'
+
+    //  <!-- ! user email subscription -->
+    const handleSubmit = async (e) => {
+      e.preventDefault()
+      const alert = document.querySelector(
+        `#${e.target.id.split('-')?.[0]}-alert`
+      )
+      const data = { email: e.target['email'].value }
+      try {
+        e.target['submit'].innerHTML +=
+          "<span class='spinner-border spinner-border-sm ms-2'></span>"
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        })
+        if (response.ok) {
+          alert.classList.remove('d-none')
+          alert.classList.remove('alert-danger')
+          alert.classList.add('alert-success')
+          alert.querySelector('.alert-text').innerHTML =
+            'Congratulation! We will connect with you soon.'
+        } else
+          throw {
+            type: response.type,
+            bodyUsed: response.bodyUsed,
+            url: response.url,
+            headers: response.headers,
+            body: response.body,
+            formData: response.formData,
+            status: response.status,
+            statusText: response.statusText,
+            ...(await response.json()),
+          }
+      } catch (error) {
+        alert.classList.remove('d-none')
+        alert.classList.remove('alert-success')
+        alert.classList.add('alert-danger')
+        console.log(error)
+        alert.querySelector('.alert-text').innerHTML =
+          error?.message || 'Something went wrong. Try again later.'
+      }
+      e.target['submit'].innerHTML = 'Join Us'
+    }
+
+    ;[topForm, bottomForm].forEach((form) =>
+      form.addEventListener('submit', handleSubmit)
+    )
+  </script>
 </html>
